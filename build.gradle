@@ -47,3 +47,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+application {
+	mainClass = 'com._p1m.productivity_suite.Application'
+}
+
+buildScan {
+	termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+	termsOfServiceAgree = 'yes'
+}
