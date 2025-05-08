@@ -5,7 +5,6 @@ plugins {
 	id 'eclipse'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id 'com.gradle.enterprise' version '3.15.1'
 }
 
 group = 'com.1p1m'
@@ -52,9 +51,4 @@ tasks.named('test') {
 
 application {
 	mainClass = 'com._p1m.productivity_suite.Application'
-}
-
-buildScan {
-	termsOfServiceUrl = 'https://gradle.com/terms-of-service'
-	termsOfServiceAgree = 'yes'
 }
