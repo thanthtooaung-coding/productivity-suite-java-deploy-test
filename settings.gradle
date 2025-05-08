@@ -1,6 +1,6 @@
-rootProject.name = 'productivity-suite'
 pluginManagement {
     plugins {
         id 'com.gradle.enterprise' version '3.15.1'
     }
 }
+rootProject.name = 'productivity-suite'
