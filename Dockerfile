@@ -14,18 +14,21 @@ COPY . /app
 # Set executable permission AGAIN after copying all files
 RUN chmod +x /app/gradlew
 
-# Modify build.gradle to comment out buildScan section
+# Modify build.gradle to comment out buildScan section (This step might not be necessary now
+# since buildScan is in settings.gradle, but it doesn't hurt if the sed command finds nothing)
 RUN sed -i '/buildScan {/,/}/s/^/\/\/ /' /app/build.gradle
 
-# Run the build
+# Run the build (This will now produce a JAR)
 RUN /app/gradlew clean build
 
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-COPY --from=build /app/build/libs/*.war app.war
+# Copy the JAR instead of the WAR
+COPY --from=build /app/build/libs/*.jar app.jar
 COPY .env .env
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.war"]
+# Update the ENTRYPOINT to run the JAR
+ENTRYPOINT ["java", "-jar", "app.jar"]

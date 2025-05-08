@@ -1,7 +1,8 @@
 plugins {
 	id 'application'
 	id 'java'
-	id 'war'
+	// Remove the 'war' plugin
+	// id 'war'
 	id 'eclipse'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.7'
@@ -33,7 +34,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	// Remove the providedRuntime dependency for Tomcat
+	// providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -52,3 +54,5 @@ tasks.named('test') {
 application {
 	mainClass = 'com._p1m.productivity_suite.Application'
 }
+
+// The buildScan block should remain in settings.gradle as you corrected earlier.
