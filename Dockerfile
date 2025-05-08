@@ -18,12 +18,14 @@ RUN chmod +x /app/gradlew
 RUN sed -i '/buildScan {/,/}/s/^/\/\/ /' /app/build.gradle
 
 # Run the build
-RUN /app/gradlew clean build -x test --no-daemon
+RUN /app/gradlew clean build -x test
 
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 COPY --from=build /app/build/libs/*.war app.war
 COPY .env .env
+
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.war"]
