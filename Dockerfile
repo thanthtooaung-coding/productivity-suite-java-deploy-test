@@ -1,15 +1,23 @@
 FROM gradle:8.5-jdk17 AS build
 WORKDIR /app
 
+# Copy just what's needed for initial dependency resolution
 COPY build.gradle settings.gradle gradlew /app/
 COPY gradle /app/gradle
 
+# Set executable permission
 RUN chmod +x /app/gradlew
 
-RUN /app/gradlew build --no-daemon || true
-
+# Copy the rest of the application
 COPY . /app
 
+# Set executable permission AGAIN after copying all files
+RUN chmod +x /app/gradlew
+
+# Modify build.gradle to comment out buildScan section
+RUN sed -i '/buildScan {/,/}/s/^/\/\/ /' /app/build.gradle
+
+# Run the build
 RUN /app/gradlew clean build -x test --no-daemon
 
 FROM openjdk:17-jdk-slim
