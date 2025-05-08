@@ -52,7 +52,5 @@ tasks.named('test') {
 }
 
 application {
-	mainClass = 'com._p1m.productivity_suite.Application'
+	mainClass = 'com._p1m.productivity_suite.ProductivitySuiteApplication'
 }
-
-// The buildScan block should remain in settings.gradle as you corrected earlier.
